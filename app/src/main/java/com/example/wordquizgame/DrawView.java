@@ -19,8 +19,7 @@ import java.util.Random;
 
 public class DrawView extends View {
 
-    public int[] object = new int[]{R.drawable.animals_cat
-            , R.drawable.animals_dog, R.drawable.animals_dolphin};
+    public int[] object = new int[3];
     public int[] target = new int[]{R.drawable.cat
             , R.drawable.dog, R.drawable.dolphin};
 
@@ -102,6 +101,7 @@ public class DrawView extends View {
 
         int intMyRandom;
         Random objRandom = new Random();
+
         for (int i = 0; i < 3; i++) {
 
             intMyRandom = objRandom.nextInt(12) + 1;
