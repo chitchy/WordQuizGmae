@@ -5,14 +5,17 @@ package com.example.wordquizgame;
  */
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.os.Handler;
 import android.view.Display;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
@@ -20,8 +23,7 @@ import java.util.Random;
 public class DrawView extends View {
 
     public int[] object = new int[3];
-    public int[] target = new int[]{R.drawable.cat
-            , R.drawable.dog, R.drawable.dolphin};
+    public int[] target = new int[3];
 
     public int object_size;
     public int[][] object_position;
@@ -38,6 +40,10 @@ public class DrawView extends View {
     Context mContext;
 
     private int[] objectSourceInts, targetSourceInts;
+    private  int timesAnInt = 1;
+
+
+    private int[]intNumber =  {1,2,3,4,5,6,7,8,9,10,11,12};
 
     public DrawView(Context context, Display display) {
         super(context);
@@ -86,9 +92,9 @@ public class DrawView extends View {
             onTarget[i] = false;
         }
 
-        target_position = new int[][]{{screen_width * 6 / 8, screen_height * 2 / 8}
+        target_position = new int[][]{{screen_width * 6 / 8, screen_height * 6 / 8}
                 , {screen_width * 6 / 8, screen_height * 4 / 8}
-                , {screen_width * 6 / 8, screen_height * 6 / 8}};
+                , {screen_width * 6 / 8, screen_height * 2 / 8}};
         object_default_position = new int[][]{{screen_width * 2 / 8, screen_height * 2 / 8}
                 , {screen_width * 2 / 8, screen_height * 4 / 8}
                 , {screen_width * 2 / 8, screen_height * 6 / 8}};
@@ -98,66 +104,89 @@ public class DrawView extends View {
     }
 
     private void randomForImage() {
-
-        int intMyRandom;
+      int[] intNumber = {1,2,3,4,5,6,7,8,9,10,11,12};
+        int[] intMyArrayRandom = new int[3];
         Random objRandom = new Random();
 
         for (int i = 0; i < 3; i++) {
 
-            intMyRandom = objRandom.nextInt(12) + 1;
-            object[i] = chooseImage(intMyRandom);
-        }
-    }
-
-    private int chooseImage(int intMyRandom) {
+           int intIndex = objRandom.nextInt(intNumber.length);
+            while (intNumber[intIndex] == 0){
+                intIndex = objRandom.nextInt(intNumber.length);
+            }
+            intMyArrayRandom[i] = intNumber[intIndex];
+            intNumber[intIndex] = 0;
+            object[i] = chooseImage(true, intMyArrayRandom[i]);
+            target[i] = chooseImage(false, intMyArrayRandom[i]);
+                }
+            }
+    private int chooseImage(boolean status, int intMyRandom) {
 
         int intImage = R.drawable.animals_dog;
+        int intTatget;
         switch (intMyRandom){
 
 
             case 1:
                 intImage = R.drawable.animals_cat;
+                intTatget = R.drawable.cat;
                 break;
             case 2:
                 intImage = R.drawable.animals_dog;
+                intTatget = R.drawable.dog;
                 break;
             case 3:
                 intImage = R.drawable.animals_dolphin;
+                intTatget = R.drawable.dolphin;
                 break;
             case 4:
                 intImage = R.drawable.body_arm;
+                intTatget = R.drawable.arm;
                 break;
             case 5:
                 intImage = R.drawable.body_ear;
+                intTatget = R.drawable.ear;
                 break;
             case 6:
                 intImage = R.drawable.body_eye;
+                intTatget = R.drawable.eye;
                 break;
             case 7:
                 intImage = R.drawable.body_foot;
+                intTatget = R.drawable.foot;
                 break;
             case 8:
                 intImage = R.drawable.body_hair;
+                intTatget = R.drawable.hair;
                 break;
             case 9:
                 intImage = R.drawable.body_hand;
+                intTatget = R.drawable.hand;
                 break;
             case 10:
                 intImage = R.drawable.body_mouth;
+                intTatget = R.drawable.mouth;
                 break;
             case 11:
                 intImage = R.drawable.body_nose;
+                intTatget = R.drawable.nose;
                 break;
             case 12:
                 intImage = R.drawable.body_thumb;
+                intTatget = R.drawable.thumb;
                 break;
 
             default:
                 intImage = R.drawable.animals_cat;
+                intTatget = R.drawable.cat;
                 break;
         }
 
-        return intImage;
+        if (status){
+            return  intImage;
+        }else {
+            return  intTatget;
+        }
     }
 
     protected void onDraw(Canvas canvas) {
@@ -217,8 +246,14 @@ public class DrawView extends View {
                             count++;
                     }
 
-                    if (count == object.length)
-                        Toast.makeText(mContext, "Finish", Toast.LENGTH_SHORT).show();
+                    if (count == object.length) {
+                        timesAnInt += 1;
+                        Toast.makeText(mContext, "ครั่งที่ " + Integer.toString(timesAnInt), Toast.LENGTH_SHORT).show();
+                        reRunGame();
+
+                        sentTimes(timesAnInt);
+                    }
+
                 }
                 break;
         }
@@ -227,6 +262,25 @@ public class DrawView extends View {
 
         return true;
     }
+
+    private void sentTimes(int timesAnInt) {
+
+    }
+
+    private void reRunGame() {
+        Handler objHandler = new Handler();
+        objHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                //reset();
+
+
+            }
+        }, 3000);
+    }
+
+
+
 
     public void reset() {
         for (int i = 0; i < object.length; i++)

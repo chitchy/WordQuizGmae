@@ -1,6 +1,7 @@
 package com.example.wordquizgame;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.app.Activity;
 import android.util.Log;
@@ -11,10 +12,12 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class Game2Activity extends Activity {
     DrawView dv;
     LinearLayout scene;
+
 
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -30,9 +33,19 @@ public class Game2Activity extends Activity {
         Button buttonReset = (Button)findViewById(R.id.buttonReset);
         buttonReset.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
-                dv.reset();
+                //dv.reset();
+
+                restartActvity();
             }
         });
+
+    }
+
+
+    private void restartActvity() {
+        Intent objIntent = new Intent(Game2Activity.this, Game2Activity.class);
+        objIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(objIntent);
     }
 
     public void draw() {

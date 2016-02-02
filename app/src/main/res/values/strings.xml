@@ -58,8 +58,8 @@
 
     <string name="choose_game">เลือกเกมที่ต้องการเล่น</string>
     <string name="game1">เกมทายคำศัพท์จากรูปภาพ</string>
-    <string name="game2">เกมสะกดคำศัพท์ตามรูปภาพ</string>
-    <string name="game3">เกมจับคู่คำศัพท์และรูปภาพ</string>
+    <string name="game3">เกมสะกดคำศัพท์ตามรูปภาพ</string>
+    <string name="game2">เกมจับคู่คำศัพท์และรูปภาพ</string>
 
 
 </resources>
