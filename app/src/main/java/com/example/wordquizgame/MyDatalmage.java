@@ -16,4 +16,15 @@ public class MyDatalmage {
             R.drawable.body_hand,
             R.drawable.body_mouth};
 
+        public String[] answerStrings = {"cat",
+                "dog",
+                "dolphin",
+                "arm",
+                "ear",
+                "eye",
+                "foot",
+                "hair",
+                "hand",
+                "mouth"};
+
 }// Main Class
