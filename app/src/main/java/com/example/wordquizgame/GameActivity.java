@@ -76,19 +76,8 @@ public class GameActivity extends ActionBarActivity {
         setContentView(R.layout.activity_game);
 
         // อ่านค่าระดับความยากที่ส่งมาจาก MainActivity
-        Intent intent = getIntent();
-        int diffIndex = intent.getIntExtra(DIFFICULTY, 0);
-        String str = (getResources().getStringArray(R.array.difficulty))[diffIndex];
-        if (str.equals(getString(R.string.easy_label))) {
-            mNumChoices = 2;
-            mDifficulty = DatabaseHelper.DIFFICULTY_EASY;
-        } else if (str.equals(getString(R.string.medium_label))) {
-            mNumChoices = 4;
-            mDifficulty = DatabaseHelper.DIFFICULTY_MEDIUM;
-        } else if (str.equals(getString(R.string.hard_label))) {
-            mNumChoices = 6;
-            mDifficulty = DatabaseHelper.DIFFICULTY_HARD;
-        }
+        mNumChoices = 4;
+        mDifficulty = DatabaseHelper.DIFFICULTY_MEDIUM;
 
         // สร้างออบเจ็คต่างๆที่ต้องใช้งาน
         mFileNameList = new ArrayList<String>();

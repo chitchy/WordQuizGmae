@@ -14,7 +14,7 @@ public class ShowGameActivity extends ActionBarActivity {
     }
 
     public void clickGame1(View view) {
-        startActivity(new Intent(ShowGameActivity.this, MainActivity.class));
+        startActivity(new Intent(ShowGameActivity.this, GameActivity.class));
 
 
     }
