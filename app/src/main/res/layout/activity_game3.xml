@@ -28,13 +28,28 @@
             android:layout_height="wrap_content"
             android:text="New Text"
             android:id="@+id/textView3"
-            android:textSize="@dimen/h3" />
+            android:textSize="@dimen/h3"
+            android:layout_gravity="center_horizontal" />
 
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/linButton"
-            android:layout_gravity="center_horizontal"></LinearLayout>
+            android:layout_gravity="center_horizontal">
+
+        </LinearLayout>
+
     </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/game3"
+        android:id="@+id/textView4"
+        android:layout_marginTop="20dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center_vertical"
+        android:textSize="@dimen/h1" />
+
 </RelativeLayout>
