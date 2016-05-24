@@ -1,5 +1,6 @@
 package com.example.wordquizgame;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,7 +18,7 @@ import android.widget.TextView;
 public class Game2Activity extends Activity {
     DrawView dv;
     LinearLayout scene;
-
+    static int num = 0;
 
     protected void onCreate(Bundle savedInstanceState) {
         requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -34,8 +35,25 @@ public class Game2Activity extends Activity {
         buttonReset.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
                 //dv.reset();
+                num++;
+                Log.d("5April", "You Click Label = " + num);
+                if(num<=4){
+                    restartActvity();
+                }else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(Game2Activity.this);
+                    builder.setTitle("Game End");
+                    builder.setMessage("คุณเล่นครบ " + num + " ข้อแล้ว");
+                    builder.setCancelable(false);
+                    builder.setPositiveButton("ไปหน้าเลือกเกม", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Intent objIntent = new Intent(Game2Activity.this, ShowGameActivity.class);
+                            startActivity(objIntent);
+                        }
+                    });
 
-                restartActvity();
+                             builder.show();
+                }
             }
         });
 
@@ -61,6 +79,15 @@ public class Game2Activity extends Activity {
         } catch (Exception e) { }
     }
 
+    protected void onResume() {
+        super.onResume();
+        Music.play(this, R.raw.game);
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Music.stop();
+    }
 
 }

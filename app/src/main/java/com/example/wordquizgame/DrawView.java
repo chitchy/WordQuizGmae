@@ -22,6 +22,7 @@ import java.util.Random;
 
 public class   DrawView extends View {
 
+
     public int[] object = new int[3];
     public int[] target = new int[3];
 
@@ -292,4 +293,5 @@ public class   DrawView extends View {
 
         invalidate();
     }
+
 }

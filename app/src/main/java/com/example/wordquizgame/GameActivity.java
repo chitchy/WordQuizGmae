@@ -41,7 +41,7 @@ public class GameActivity extends ActionBarActivity {
     protected static final String DIFFICULTY = "difficulty";
     private static final String TAG = "GameActivity";
 
-    private static final int TOTAL_QUESTIONS = 3;   // จำนวนคำถามใน 1 เกม
+    private static final int TOTAL_QUESTIONS = 5;   // จำนวนคำถามใน 1 เกม
     private static final int COLUMNS_PER_ROW = 2;   // จำนวนปุ่มคำศัพท์ใน 1 แถว
 
     private ArrayList<String> mFileNameList;        // ชื่อไฟล์ภาพทั้งหมดในหมวดคำศัพท์ที่ถูกเลือก
@@ -386,13 +386,14 @@ public class GameActivity extends ActionBarActivity {
                 AlertDialog.Builder resetDialog = new AlertDialog.Builder(this);
 
                 // กำหนดข้อความบน title bar ของไดอะล็อก
-                resetDialog.setTitle(R.string.result_title);
+                resetDialog.setTitle(
+
+                        R.string.result_title);
 
                 // กำหนดข้อความในไดอะล็อก สรุปผลการเล่นเกม
                 resetDialog.setMessage(String.format("%s %d\n%s %.1f%%",
                         getResources().getString(R.string.num_guesses),
-                        mTotalGuesses,
-                        getResources().getString(R.string.success_percentage),
+                        mTotalGuesses, getResources().getString(R.string.success_percentage),
                         ((100 * TOTAL_QUESTIONS) / (double) mTotalGuesses)));
 
                 // ไม่ให้ยกเลิกไดอะล็อกได้ (เช่นการใช้ปุ่ม Back)
@@ -429,6 +430,7 @@ public class GameActivity extends ActionBarActivity {
                 }, 2000);                   // 2000 มิลลิวินาที ก็คือ 2 วินาที
             }
         } else {  // ถ้าตอบผิด
+
             playSound(R.raw.fail3);         // เล่นเสียง (fail)
 
             // แสดงแอนิเมชั่นการสั่น

@@ -61,5 +61,8 @@
     <string name="game3">เกมสะกดคำศัพท์ตามรูปภาพ</string>
     <string name="game2">เกมจับคู่คำศัพท์และรูปภาพ</string>
 
+    <string name="text1">เลือกตัวอักษรให้ได้ความหมายตามภาพ</string>
+    <string name="text">ลากรูปภาพไปวางทับคำศัพท์ให้ถูกต้อง</string>
+
 
 </resources>

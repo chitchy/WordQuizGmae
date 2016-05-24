@@ -1,5 +1,9 @@
 package com.example.wordquizgame;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -21,6 +25,7 @@ public class Game3Activity extends ActionBarActivity {
     private String showTextString = "";
     private int timesAnInt = 0, countAnInt = 0;
     private StringBuilder stringBuilder;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,12 +76,8 @@ public class Game3Activity extends ActionBarActivity {
                 @Override
                 public void onClick(View view) {
 
-                    Log.d("5April", "You Click Label = " + answerChars[view.getId()]);
                     addTextToTextView(String.valueOf(answerChars[view.getId()]));
-
                     button.setVisibility(View.INVISIBLE);
-
-
                     timesAnInt += 1;
                     if (timesAnInt >= answerChars.length) {
                         checkAnswer();
@@ -98,30 +99,37 @@ public class Game3Activity extends ActionBarActivity {
         if (answerStrings[countAnInt].equals(textView.getText().toString())) {
             countAnInt += 1;
         }
+        if(countAnInt<5) {
 
-        clearAnswer();
-        showQuestionImage(countAnInt);
-        createButton(countAnInt);
+
+            clearAnswer();
+            showQuestionImage(countAnInt);
+            createButton(countAnInt);
+
+
+        }else {
+            AlertDialog.Builder builder = new AlertDialog.Builder(Game3Activity.this);
+            builder.setTitle("Game End");
+            builder.setMessage("คุณเล่นครบ " + countAnInt + " ข้อแล้ว" );
+            builder.setCancelable(false);
+            builder.setPositiveButton("ไปหน้าเลือกเกม", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    Intent objIntent = new Intent(Game3Activity.this, ShowGameActivity.class);
+                    startActivity(objIntent);
+                }
+            });
+
+            builder.show();
+        }
 
     }   // checkAnswer
 
     private void addTextToTextView(String strAdd) {
-
-        Log.d("5April", "ค่่าที่ได้ strAdd ==> " + strAdd);
-
         stringBuilder.append(strAdd);
-
-        Log.d("5April", "stringBuild ==> ที่สระสมได้ " + stringBuilder.toString());
-
         showTextString = stringBuilder.toString();
-
-        Log.d("5April",
-                "่ค่าของ showTextString ที่รับได้ ==> " + showTextString);
-
         forSetText(showTextString);
-
-
-    }   // addText
+    }
 
     private void forSetText(String showTextString) {
         textView.setText(showTextString);
@@ -133,15 +141,28 @@ public class Game3Activity extends ActionBarActivity {
         textView.setText("");
 
         stringBuilder.setLength(0);
-        Log.d("5April", "stringBuild ตอน Clear ==> " + stringBuilder.toString());
+
         linearLayout.removeAllViews();
 
-    }   // clearAnswer
+
+
+    }
 
     private void showQuestionImage(int intIndex) {
 
-        imageView.setImageResource(questionImageInts[intIndex]);
+
+            imageView.setImageResource(questionImageInts[intIndex]);
 
     }   // showQuestion
+    protected void onResume() {
+        super.onResume();
+        Music.play(this, R.raw.game);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Music.stop();
+    }
 
 }   // Main Class

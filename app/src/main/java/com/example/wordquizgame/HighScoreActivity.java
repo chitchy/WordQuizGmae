@@ -16,9 +16,9 @@ import java.util.HashMap;
 
 public class HighScoreActivity extends Activity {
 
-    private static final String EASY = "ง่าย";
-    private static final String MEDIUM = "ปานกลาง";
-    private static final String HARD = "ยาก";
+    private static final String MEDIUM = "Game1";
+    private static final String EASY = "Game2";
+    private static final String HARD = "Game3";
 
     private ListView mList;
     private DatabaseHelper mDbHelper;
@@ -40,19 +40,20 @@ public class HighScoreActivity extends Activity {
         // และมีค่าเป็น constant ที่กำหนดในคลาส DatabaseHelper
         // หน้าที่ของ HashMap นี้ ก็เพื่อให้เราเอาข้อความของปุ่มเรดิโอ ไปดึงค่า constant ที่สัมพันธ์กันมาใช้งาน
         mDifficultyMap = new HashMap<String, Integer>();
-        mDifficultyMap.put(EASY, DatabaseHelper.DIFFICULTY_EASY);
         mDifficultyMap.put(MEDIUM, DatabaseHelper.DIFFICULTY_MEDIUM);
+        mDifficultyMap.put(EASY, DatabaseHelper.DIFFICULTY_EASY);
         mDifficultyMap.put(HARD, DatabaseHelper.DIFFICULTY_HARD);
 
         mList = (ListView) findViewById(R.id.highScoreListView);
         setListAdapter();
 
         // กำหนดข้อความปุ่มเรดิโอ
-        RadioButton easyRadioButton = (RadioButton) findViewById(R.id.easyRadioButton);
-        easyRadioButton.setText(EASY);
 
         RadioButton mediumRadioButton = (RadioButton) findViewById(R.id.mediumRadioButton);
         mediumRadioButton.setText(MEDIUM);
+
+        RadioButton easyRadioButton = (RadioButton) findViewById(R.id.easyRadioButton);
+        easyRadioButton.setText(EASY);
 
         RadioButton hardRadioButton = (RadioButton) findViewById(R.id.hardRadioButton);
         hardRadioButton.setText(HARD);

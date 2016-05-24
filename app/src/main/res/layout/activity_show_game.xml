@@ -21,7 +21,8 @@
             android:text="@string/choose_game"
             android:id="@+id/textView"
             android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/h1" />
+            android:textSize="@dimen/h1"
+            android:textColor="@color/title_color" />
 
         <Button
             android:layout_width="@dimen/button1"

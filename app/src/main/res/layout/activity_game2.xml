@@ -15,11 +15,16 @@
 
     <Button
         android:id="@+id/buttonReset"
-        android:layout_width="40dp"
+        android:layout_width="70dp"
         android:layout_height="40dp"
         android:layout_margin="10dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true" />
+        android:layout_alignParentTop="false"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentBottom="true"
+        android:gravity="center_vertical|center_horizontal"
+        android:layout_alignWithParentIfMissing="false"
+        android:layout_centerHorizontal="true"
+        android:text="Next" />
 
     <LinearLayout
         android:orientation="vertical"
@@ -33,7 +38,18 @@
             android:text="@string/game2"
             android:id="@+id/textView2"
             android:layout_gravity="center_horizontal"
-            android:textSize="@dimen/h1" />
+            android:textSize="@dimen/h1"
+            android:textColor="@color/title_color" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/text"
+            android:id="@+id/textView6"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="10dp"
+            android:textColor="#010101"
+            android:textSize="@dimen/h2" />
 
     </LinearLayout>
 

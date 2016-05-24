@@ -18,4 +18,21 @@ public class ChooseGameAcitvity extends ActionBarActivity {
         startActivity(objIntent);
 
     }
+    public void ScoreGame(View view) {
+        Intent objIntent = new Intent(ChooseGameAcitvity.this, HighScoreActivity.class);
+        startActivity(objIntent);
+
+    }
+
+
+    protected void onResume() {
+        super.onResume();
+        Music.play(this, R.raw.main);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Music.stop();
+    }
 }
